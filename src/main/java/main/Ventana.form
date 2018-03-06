@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="main.Ventana">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="FormLayout">
+    <rowspec value="center:max(d;4px):noGrow"/>
+    <rowspec value="top:4dlu:noGrow"/>
+    <rowspec value="center:d:noGrow"/>
+    <rowspec value="top:4dlu:noGrow"/>
+    <rowspec value="center:max(d;4px):noGrow"/>
+    <rowspec value="top:4dlu:noGrow"/>
+    <rowspec value="center:max(d;4px):noGrow"/>
+    <rowspec value="top:4dlu:noGrow"/>
+    <rowspec value="center:d:grow"/>
+    <rowspec value="top:4dlu:noGrow"/>
+    <rowspec value="center:max(d;4px):noGrow"/>
+    <colspec value="fill:max(d;4px):noGrow"/>
+    <colspec value="left:4dlu:noGrow"/>
+    <colspec value="fill:72px:noGrow"/>
+    <colspec value="left:6dlu:noGrow"/>
+    <colspec value="fill:d:grow"/>
+    <colspec value="left:4dlu:noGrow"/>
+    <colspec value="fill:max(d;4px):noGrow"/>
+    <colspec value="left:4dlu:noGrow"/>
+    <colspec value="fill:max(d;4px):noGrow"/>
+    <constraints>
+      <xy x="20" y="20" width="523" height="638"/>
+    </constraints>
+    <properties>
+      <minimumSize width="523" height="638"/>
+      <preferredSize width="523" height="640"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="614ed" class="javax.swing.JButton" binding="arbrirButton" default-binding="true">
+        <constraints>
+          <grid row="2" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <text value="Abrir"/>
+        </properties>
+      </component>
+      <component id="16a1e" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <text value="   "/>
+        </properties>
+      </component>
+      <component id="317c2" class="javax.swing.JButton" binding="verificarButton" default-binding="true">
+        <constraints>
+          <grid row="6" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <text value="Verificar"/>
+        </properties>
+      </component>
+      <scrollpane id="853ae">
+        <constraints>
+          <grid row="8" column="2" row-span="1" col-span="5" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <forms defaultalign-horz="false" defaultalign-vert="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="ed8c4" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+            <constraints/>
+            <properties/>
+          </component>
+        </children>
+      </scrollpane>
+      <grid id="c5e6" layout-manager="FormLayout">
+        <rowspec value="center:d:grow"/>
+        <colspec value="fill:d:grow"/>
+        <constraints>
+          <grid row="8" column="8" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </grid>
+      <grid id="1c345" layout-manager="FormLayout">
+        <rowspec value="center:d:grow"/>
+        <colspec value="fill:d:grow"/>
+        <constraints>
+          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </grid>
+      <grid id="83268" layout-manager="FormLayout">
+        <rowspec value="center:d:grow"/>
+        <colspec value="fill:d:grow"/>
+        <constraints>
+          <grid row="10" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </grid>
+      <grid id="aa0f3" layout-manager="FormLayout">
+        <rowspec value="center:d:grow"/>
+        <colspec value="fill:d:grow"/>
+        <constraints>
+          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </grid>
+      <component id="7533a" class="javax.swing.JLabel" binding="direccionArchivoLabel">
+        <constraints>
+          <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="edbe4" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <text value="Archivo:"/>
+        </properties>
+      </component>
+      <component id="8201d" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="6" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <text value="Links que contienen errores:"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
