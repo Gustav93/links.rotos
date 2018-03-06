@@ -1,6 +1,7 @@
 package main;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -9,14 +10,14 @@ import java.util.List;
 public class Ventana
 {
     private JPanel panel1;
-    private JTextField textField1;
-    private JButton arbrirButton;
+    private JButton abrirButton;
     private JButton verificarButton;
     private JTextArea textArea1;
     private JLabel direccionArchivoLabel;
     private File file;
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         JFrame frame = new JFrame("Ventana");
         frame.setContentPane(new Ventana().panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,10 +28,9 @@ public class Ventana
     public Ventana()
     {
         verificarButton.setEnabled(false);
-        arbrirButton.addMouseListener(new MouseAdapter() {
+        abrirButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
                 abrirArchivo();
             }
         });
@@ -40,6 +40,7 @@ public class Ventana
 
                 if(verificarButton.isEnabled())
                 {
+                    abrirButton.setEnabled(false);
                     textArea1.setText("");
                     List<String> linksRotos = null;
                     Test test = new Test();
@@ -48,6 +49,8 @@ public class Ventana
                         linksRotos = test.chequear404(file);
 
                     textArea1.setText(mostrarLinks(linksRotos));
+
+                    abrirButton.setEnabled(true);
                 }
             }
         });
@@ -58,6 +61,8 @@ public class Ventana
         String pathArchivo;
 //        /llamamos el metodo que permite cargar la ventana
         JFileChooser fileChooser=new JFileChooser();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter(".xlsx & .ssl","xlsx", "ssl");
+        fileChooser.setFileFilter(filtro);
         fileChooser.showOpenDialog(fileChooser);
 //        abrimos el archivo seleccionado
         file = fileChooser.getSelectedFile();

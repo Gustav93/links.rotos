@@ -32,6 +32,7 @@ public class Test
 
             if(driver.getPageSource().contains("ERROR 404"))
                 linksRotos.add(link);
+
         }
 
         System.out.println(linksRotos);
