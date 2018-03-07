@@ -5,7 +5,7 @@
     <rowspec value="top:4dlu:noGrow"/>
     <rowspec value="center:d:noGrow"/>
     <rowspec value="top:4dlu:noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
+    <rowspec value="center:20px:noGrow"/>
     <rowspec value="top:4dlu:noGrow"/>
     <rowspec value="center:max(d;4px):noGrow"/>
     <rowspec value="top:4dlu:noGrow"/>
@@ -37,15 +37,6 @@
         </constraints>
         <properties>
           <text value="Abrir"/>
-        </properties>
-      </component>
-      <component id="16a1e" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <text value="   "/>
         </properties>
       </component>
       <component id="317c2" class="javax.swing.JButton" binding="verificarButton" default-binding="true">
@@ -140,6 +131,16 @@
         </constraints>
         <properties>
           <text value="Links que contienen errores:"/>
+        </properties>
+      </component>
+      <component id="16a1e" class="javax.swing.JLabel" binding="errorLabel">
+        <constraints>
+          <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <alignmentY value="0.5"/>
+          <text value=""/>
         </properties>
       </component>
     </children>

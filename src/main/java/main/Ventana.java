@@ -2,10 +2,13 @@ package main;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.List;
+
+import static utilidades.Test.chequear404;
 
 public class Ventana
 {
@@ -14,20 +17,23 @@ public class Ventana
     private JButton verificarButton;
     private JTextArea textArea1;
     private JLabel direccionArchivoLabel;
-    private File file;
+    private JLabel errorLabel;
+    private File archivo;
 
     public static void main(String[] args)
     {
-        JFrame frame = new JFrame("Ventana");
+        JFrame frame = new JFrame("Links Rotos");
         frame.setContentPane(new Ventana().panel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
 
     public Ventana()
     {
+        errorLabel.setForeground(Color.red);
         verificarButton.setEnabled(false);
+
         abrirButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -40,17 +46,21 @@ public class Ventana
 
                 if(verificarButton.isEnabled())
                 {
-                    abrirButton.setEnabled(false);
                     textArea1.setText("");
-                    List<String> linksRotos = null;
-                    Test test = new Test();
+                    List<String> linksRotos;
 
-                    if(file!= null)
-                        linksRotos = test.chequear404(file);
-
-                    textArea1.setText(mostrarLinks(linksRotos));
-
-                    abrirButton.setEnabled(true);
+                    if(archivo != null)
+                    {
+                        try
+                        {
+                            linksRotos = chequear404(archivo);
+                            textArea1.setText(mostrarLinks(linksRotos));
+                        }
+                        catch (IllegalArgumentException ex)
+                        {
+                            errorLabel.setText("Archivo incorrecto");
+                        }
+                    }
                 }
             }
         });
@@ -65,13 +75,14 @@ public class Ventana
         fileChooser.setFileFilter(filtro);
         fileChooser.showOpenDialog(fileChooser);
 //        abrimos el archivo seleccionado
-        file = fileChooser.getSelectedFile();
+        archivo = fileChooser.getSelectedFile();
 
-        if(file!=null)
+        if(archivo != null)
         {
-            pathArchivo = file.getAbsolutePath();
+            pathArchivo = archivo.getAbsolutePath();
             direccionArchivoLabel.setText(pathArchivo);
             verificarButton.setEnabled(true);
+            errorLabel.setText("");
         }
     }
 
