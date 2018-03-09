@@ -10,16 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import link.Link;
 
 public class Leer
 {
     //lee la 1ra columna de la 1ra hoja de un archivo excel, donde se van a encontrar los links a procesar
-    public static List<String> leerLinksExcel(File archivo)
+    public static List<Link> leerLinksExcel(File archivo)
     {
         if(!archivo.getName().contains(".xlsx"))
             throw new IllegalArgumentException("No se puede procesar el archivo");
 
-        List<String> links = new ArrayList();
+        List<Link> links = new ArrayList();
 
         InputStream excelStream;
 
@@ -47,7 +48,7 @@ public class Leer
                 if(link.equals("")) //si la celda no tiene contenido, no la tengo en cuenta
                     continue;
 
-                links.add(link);
+                links.add(new Link(link));
             }
         }
         catch (FileNotFoundException e)
@@ -63,21 +64,21 @@ public class Leer
     }
 
     //en estos archivos los links no aparecen explicitamente asi que hay que buscarlos en cada linea
-    public static List<String> leerLinksSSL(File archivo)
+    public static List<Link> leerLinksSSL(File archivo)
     {
         if(!archivo.getName().contains(".ssl"))
             throw new IllegalArgumentException("No se puede procesar el archivo");
 
-        List<String> links = new ArrayList();
-        String cadena;
+        List<Link> links = new ArrayList();
+        String linea;
 
         try
         {
             FileReader fr = new FileReader(archivo);
             BufferedReader br = new BufferedReader(fr);
 
-            while ((cadena = br.readLine()) != null)
-                agregarLink(cadena, links);
+            while ((linea = br.readLine()) != null)
+                agregarLink(linea, links);
 
             br.close();
         }
@@ -96,7 +97,7 @@ public class Leer
 
     //Las lineas que tienen los liks no tienen toda la url completa, este metodo se encarga de buscar en la linea,
     //la parte del link que aparece en el archivo para despues agregar la parte de la url que falta.
-    private static void agregarLink(String linea, List<String> links)
+    private static void agregarLink(String linea, List<Link> links)
     {
         //este patron matchea por ejemplo con:
         //1. "/musimundo/es/p/c/162951/e/123566",
@@ -118,7 +119,7 @@ public class Leer
             //el caso en el que matchea con favicon.ico no es necesario tenerlo en cuenta ya que solo es el link de un
             //icono
             if(!url.contains("favicon.ico"))
-                links.add(url);
+                links.add(new Link(url));
         }
     }
 }

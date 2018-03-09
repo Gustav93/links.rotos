@@ -1,9 +1,11 @@
 package utilidades;
 
+import link.Link;
 import main.Ventana;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import utilidades.Leer;
+import utilidades.enums.EstadoProcesamiento;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -13,10 +15,9 @@ public class Test
 {
     private static WebDriver driver = null;
 
-    public static List<String> chequear404(File file)
+    public static List<Link> chequear404(File file)
     {
-        List<String> links;
-        List<String> linksRotos = new ArrayList();
+        List<Link> links;
 
         if(file.getName().contains(".ssl"))
             links = Leer.leerLinksSSL(file);
@@ -30,20 +31,25 @@ public class Test
         System.setProperty("webdriver.chrome.driver","C:\\chromedriver.exe");
         driver = new ChromeDriver();
         System.out.println(links);
-        for(String link : links)
+        for(Link link : links)
         {
-            driver.get(link);
+            driver.get(link.getUrl());
 
-            if(driver.getPageSource().contains("ERROR 404") || driver.getCurrentUrl().equals("https://www.musimundo.com/musimundo/es/")) {
-                linksRotos.add(link);
-                Ventana.cont++;
-            }
+            if(driver.getPageSource().contains("ERROR 404"))
+                link.setEstadoProcesamiento(EstadoProcesamiento.ERROR_404);
+
+            else if(driver.getCurrentUrl().equals("https://www.musimundo.com/musimundo/es/"))
+                link.setEstadoProcesamiento(EstadoProcesamiento.REDIRECCIONAMENTO_HOME);
+
+            else if(driver.getCurrentUrl().equals(link.getUrl()))
+                link.setEstadoProcesamiento(EstadoProcesamiento.PROCESADO_CORRECTAMENTE);
+
+            else
+                link.setEstadoProcesamiento(EstadoProcesamiento.ERROR);
         }
-
-        System.out.println(linksRotos);
 
         driver.quit();
 
-        return linksRotos;
+        return links;
     }
 }

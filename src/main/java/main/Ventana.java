@@ -1,12 +1,19 @@
 package main;
 
+import link.Link;
+import utilidades.enums.EstadoProcesamiento;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableColumnModel;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.List;
+import java.util.Vector;
 
 import static utilidades.Test.chequear404;
 
@@ -18,6 +25,7 @@ public class Ventana
     private JTextArea textArea1;
     private JLabel direccionArchivoLabel;
     private JLabel errorLabel;
+    private JTable table1;
     private File archivo;
 
     public static void main(String[] args)
@@ -31,6 +39,13 @@ public class Ventana
 
     public Ventana()
     {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Url");
+        modelo.addColumn("Estado");
+
+        table1 = new JTable();
+        table1.setModel(modelo);
+
         errorLabel.setForeground(Color.red);
         verificarButton.setEnabled(false);
 
@@ -47,7 +62,7 @@ public class Ventana
                 if(verificarButton.isEnabled())
                 {
                     textArea1.setText("");
-                    List<String> linksRotos;
+                    List<Link> linksRotos;
 
                     if(archivo != null)
                     {
@@ -64,6 +79,7 @@ public class Ventana
                 }
             }
         });
+
     }
 
     private void abrirArchivo()
@@ -86,12 +102,13 @@ public class Ventana
         }
     }
 
-    private String mostrarLinks(List<String> links)
+    private String mostrarLinks(List<Link> links)
     {
         StringBuilder sb = new StringBuilder();
 
-        for(String link: links)
-            sb.append(link).append("\n");
+        for(Link link: links)
+            if(!link.getEstadoProcesamiento().equals(EstadoProcesamiento.PROCESADO_CORRECTAMENTE))
+                sb.append(link.getUrl()).append("\n");
 
         return sb.toString();
     }
